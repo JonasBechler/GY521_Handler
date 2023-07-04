@@ -19,6 +19,7 @@ struct Data_GY521
   float Pitch;
   float Yaw;
   float Temp;
+  int start_time;
 };
 
 void init_GY521(GY521 *sensor);

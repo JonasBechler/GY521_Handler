@@ -77,7 +77,7 @@ void getDataString_GY521(Data_GY521 *data, String &buf)
   buf += data->Temp;
   buf += ",\t";
   buf += "\t";
-  buf += millis();
+  buf += millis() - data->start_time;
   buf += "\n";
 }
 
@@ -139,7 +139,7 @@ void check_over_under_flow(Data_GY521* now, Data_GY521* old)
   {
     old->Pitch= old->Pitch - 360;
   }
-  else if  (now.->Pitch > 360-50 && old->Pitch < 50)
+  else if  (now->Pitch > 360-50 && old->Pitch < 50)
   {
     old->Pitch = old->Pitch + 360;
   }
@@ -153,12 +153,12 @@ void check_over_under_flow(Data_GY521* now, Data_GY521* old)
     old->Roll = old->Roll + 360;
   }
 
-  if (now.Yaw < 50 && old.Yaw > 360-50)
+  if (now->Yaw < 50 && old->Yaw > 360-50)
   {
-    old.Yaw = old.Yaw - 360;
+    old->Yaw = old->Yaw - 360;
   }
-  else if  (now.Yaw > 360-50 && old.Yaw < 50)
+  else if  (now->Yaw > 360-50 && old->Yaw < 50)
   {
-    old.Yaw = old.Yaw + 360;
+    old->Yaw = old->Yaw + 360;
   }
 }
