@@ -2,7 +2,7 @@
 #define GY521_HANDLER_h
 
 #include "Arduino.h"
-#include <GY521.h>
+#include <GY521/GY521.h>
 
 struct Data_GY521
 {
