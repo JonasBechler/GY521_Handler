@@ -10,7 +10,7 @@ void init_GY521(GY521 *sensor)
   sensor->setAccelSensitivity(1); //  4g
   sensor->setGyroSensitivity(0);  //  250 degrees/s
 
-  sensor->setThrottle();
+  sensor->setThrottle(true);
 
   //  set calibration values from calibration sketch.
   sensor->axe = 0.0707690;
