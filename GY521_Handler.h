@@ -4,6 +4,12 @@
 #include "Arduino.h"
 #include <GY521.h>
 
+
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <iomanip>
+
 struct Data_GY521
 {
   float AccX;

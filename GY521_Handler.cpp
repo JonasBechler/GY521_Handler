@@ -40,45 +40,43 @@ void setData_GY521(GY521 *sensor, Data_GY521 *data)
 
 void getDataStringInit_GY521(String &buf)
 {
-  buf = "accX,\taccY,\taccZ,\t\tangX,\tangY,\tangZ,\t\tgyroX,\tgyroY,\tgyroZ,\t\troll,\tpitch,\tyaw,\t\ttemp\t\ttime,\n";
+  buf = "accX, accY,\taccZ,\t\tangX,\tangY,\tangZ,\t\tgyroX,\tgyroY,\tgyroZ,\t\troll,\tpitch,\tyaw,\t\ttemp\t\ttime,\n";
 }
 
-void getDataString_GY521(Data_GY521 *data, String &buf)
+void getDataString_GY521(Data_GY521 *data, String &output_pointer)
 {
-  buf = "";
-  buf += data->AccX;
-  buf += ",\t";
-  buf += data->AccY;
-  buf += ",\t";
-  buf += data->AccZ;
-  buf += ",\t";
-  buf += "\t";
-  buf += data->AngX;
-  buf += ",\t";
-  buf += data->AngY;
-  buf += ",\t";
-  buf += data->AngZ;
-  buf += ",\t";
-  buf += "\t";
-  buf += data->GyroX;
-  buf += ",\t";
-  buf += data->GyroY;
-  buf += ",\t";
-  buf += data->GyroZ;
-  buf += ",\t";
-  buf += "\t";
-  buf += data->Roll;
-  buf += ",\t";
-  buf += data->Pitch;
-  buf += ",\t";
-  buf += data->Yaw;
-  buf += ",\t";
-  buf += "\t";
-  buf += data->Temp;
-  buf += ",\t";
-  buf += "\t";
-  buf += millis() - data->start_time;
-  buf += "\n";
+  std::ostringstream buf;
+
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << data->AccX;
+  buf << ", ";
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << data->AccY;
+  buf << ", ";
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << data->AccZ;
+  buf << ",  ";
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << data->AngX;
+  buf << ", ";
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << data->AngY;
+  buf << ", ";
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << data->AngZ;
+  buf << ",  ";
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << data->GyroX;
+  buf << ", ";
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << data->GyroY;
+  buf << ", ";
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << data->GyroZ;
+  buf << ",  ";
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << data->Roll;
+  buf << ", ";
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << data->Pitch;
+  buf << ", ";
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << data->Yaw;
+  buf << ",  ";
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << data->Temp;
+  buf << ",  ";
+  buf << std::fixed << std::setw(10) << std::setfill(' ') << std::setprecision(6) << (millis() - data->start_time);
+  buf << "\n";
+
+  output_pointer = buf.str().c_str();
 }
 
 void neg_Data_GY521(Data_GY521 *dataA)
